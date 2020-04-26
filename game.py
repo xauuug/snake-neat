@@ -21,7 +21,7 @@ class SnakeGame:
         self.displayWidth  = 800
         self.displayHeight = 600
         self.gameDisplay   = p.display.set_mode((self.displayWidth,self.displayHeight))
-        self.FPS           = 15
+        self.FPS           = 60
         self.font          = p.font.SysFont(None,25)
         self.blockSize     = 25
         self.clock         = p.time.Clock()
@@ -71,7 +71,7 @@ class SnakeGame:
             self.checkAppleColission()
             self.player.fome -= 1
             self.fitness = self.calcFitness()
-            self.printFitness(f"Fitness : {self.fitness}",(255,255,255))
+            self.printFitness(f"Fitness : {'%.2f' % self.fitness}",(255,255,255))
             p.display.update()
             if self.calcFitness() < 0:
                 return 0
@@ -168,8 +168,6 @@ class SnakeGame:
         #esquerda
         for x in range (0,int(vet[0])):
             p.draw.rect(self.gameDisplay,c,[(x+1)*self.blockSize,self.player.headY,self.blockSize,self.blockSize])
-
-        p.display.update()
 
         #digaonal cima direita
         for x in range (0,int(vet[4])):
